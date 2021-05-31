@@ -4,8 +4,8 @@
 
 <script>
 export default {
-  name: 'Loading',
-}
+  name: "Loading"
+};
 </script>
 
 <style>
@@ -34,7 +34,7 @@ export default {
 }
 .loader:before,
 .loader:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
 }

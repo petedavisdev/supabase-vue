@@ -12,7 +12,12 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <a @click="handleUpdateUser({ password: password })" href="#" class="btn-black" tabindex="0">
+        <a
+          @click="handleUpdateUser({ password: password })"
+          href="#"
+          class="btn-black"
+          tabindex="0"
+        >
           Update password
         </a>
       </div>
@@ -21,21 +26,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { handleUpdateUser } from '@/vuetils/useAuth'
+import { defineComponent, ref } from "vue";
+import { handleUpdateUser } from "@/vuetils/useAuth";
 
 export default defineComponent({
-  name: 'Auth',
+  name: "Auth",
 
   setup() {
-    const password = ref('')
+    const password = ref("");
 
     return {
       password,
-      handleUpdateUser,
-    }
-  },
-})
+      handleUpdateUser
+    };
+  }
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -23,21 +23,21 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/camelcase */
-import { defineComponent, ref } from 'vue'
-import Todo from '@/components/Todo.vue'
-import { allTodos, fetchTodos, addTodo } from '@/vuetils/useTodo'
-import { userSession } from '@/vuetils/useAuth'
+import { defineComponent, ref } from "vue";
+import Todo from "@/components/Todo.vue";
+import { allTodos, fetchTodos, addTodo } from "@/vuetils/useTodo";
+import { userSession } from "@/vuetils/useAuth";
 
 export default defineComponent({
-  name: 'TodoList',
+  name: "TodoList",
   components: {
-    Todo,
+    Todo
   },
 
   async setup() {
-    await fetchTodos()
+    await fetchTodos();
 
-    const task = ref('')
+    const task = ref("");
 
     /**
      * Wrapper function adding a new todo for additional client side error handling.
@@ -45,29 +45,32 @@ export default defineComponent({
     async function insertTask() {
       // Guard for short task descriptions which will fail db policy.
       if (task.value.length <= 3) {
-        alert('Please make your task a little more descriptive')
-        return
+        alert("Please make your task a little more descriptive");
+        return;
       }
       // Type check to ensure user is still logged in.
       if (userSession?.value === null) {
-        alert('Please log in again')
-        return
+        alert("Please log in again");
+        return;
       }
       try {
         // Try and wrie the data to to the database
-        const todo = await addTodo({ user_id: userSession.value.user.id, task: task.value })
+        const todo = await addTodo({
+          user_id: userSession.value.user?.id,
+          task: task.value
+        });
 
         // If there was no response, dont do anything.
         if (!todo) {
-          return
+          return;
         }
         // Otherwise push the response into allTodos.
-        allTodos.value.push(todo)
+        allTodos.value.push(todo);
 
         // Reset inptut feild
-        task.value = ''
+        task.value = "";
       } catch (err) {
-        console.error('Unknown error when adding todo', err)
+        console.error("Unknown error when adding todo", err);
       }
     }
 
@@ -75,8 +78,8 @@ export default defineComponent({
       task,
       allTodos,
       insertTask,
-      userSession,
-    }
-  },
-})
+      userSession
+    };
+  }
+});
 </script>

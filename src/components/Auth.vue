@@ -21,10 +21,19 @@
       </div>
 
       <div class="flex flex-col gap-2">
-        <a @click="handleSignup({ email, password })" href="#" class="btn-black" tabindex="0">
+        <a
+          @click="handleSignup({ email, password })"
+          href="#"
+          class="btn-black"
+          tabindex="0"
+        >
           Sign up
         </a>
-        <a @click="handleLogin({ email, password })" href="#" class="btn-black-outline">
+        <a
+          @click="handleLogin({ email, password })"
+          href="#"
+          class="btn-black-outline"
+        >
           <span v-if="password.length">Sign in</span>
           <span v-else> Send magic link </span>
         </a>
@@ -80,15 +89,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { handleLogin, handleOAuthLogin, handleSignup, handlePasswordReset } from '@/vuetils/useAuth'
+import { defineComponent, ref } from "vue";
+import {
+  handleLogin,
+  handleOAuthLogin,
+  handleSignup,
+  handlePasswordReset
+} from "@/vuetils/useAuth";
 
 export default defineComponent({
-  name: 'Auth',
+  name: "Auth",
 
   setup() {
-    const email = ref('')
-    const password = ref('')
+    const email = ref("");
+    const password = ref("");
 
     return {
       email,
@@ -96,10 +110,10 @@ export default defineComponent({
       handleLogin,
       handleOAuthLogin,
       handleSignup,
-      handlePasswordReset,
-    }
-  },
-})
+      handlePasswordReset
+    };
+  }
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
